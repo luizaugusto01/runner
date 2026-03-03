@@ -16,7 +16,7 @@ Facilitar o acesso à funcionalidade de execução de aplicações Java via linh
 4. O sistema deve ser capaz de baixar o JDK necessário para a execução tanto do Assinador quanto do Simulador, caso o JDK não esteja presente na máquina do usuário.
 5. O sistema deve ser disponibilizado em três versões pré-compiladas para as plataformas Windows, Linux e macOS, distribuídas via GitHub Releases.
 
-### Diagrama de Contexto
+## 4. Diagrama de Contexto
 
 ![](diagramas/imagens/contexto.svg)
 
@@ -26,24 +26,21 @@ Facilitar o acesso à funcionalidade de execução de aplicações Java via linh
 |----------|------|-----------|
 | Usuário | Ator | Pessoa que interage com o sistema via linha de comandos |
 | Dispositivo de Assinatura Digital | Sistema Externo | Hardware criptográfico (token USB, smart card) que armazena certificados e executa operações de assinatura |
-| Assinador (runner) | Sistema | Aplicação que orquestra as operações de assinatura digital |
 | Simulador do HubSaúde | Sistema Externo | Aplicação Web gerida pelo CLI e que responde a requisições de terceiros |
-## 3. Identificação de contêineres
 
-O sistema é composto por duas aplicações que trabalham de forma integrada: a aplicação
-**assinatura** e a aplicação Assinador.
-
-### Diagrama de Contêineres
+## 5. Diagrama de Contêineres
 
 ![](diagramas/imagens/conteineres.svg)
 
-**Comunicação entre Contêineres:**
+**Comunicação entre contêineres:**
 
 | Origem | Destino | Protocolo | Descrição |
 |--------|---------|-----------|-----------|
-| Usuário | assinatura | CLI | Comandos digitados no terminal |
-| assinatura | assinador.jar | CLI ou HTTP | Invocação direta ou requisição HTTP (conforme modo de execução) |
+| Usuário | assinador  | CLI | Comandos de assinatura (criar, validar) digitados no terminal |
+| Usuário | simulador | CLI | Comandos de gerenciamento do simulador |
+| assinador | assinador.jar | chamada de método ou HTTP | Invocação direta ou requisição HTTP (conforme modo de execução) |
 | assinador.jar | Dispositivo Criptográfico | PKCS#11 | Interface padrão para comunicação com tokens e smart cards |
+| simulador | Simulador do HubSaúde | HTTP | Invoca e monitora o ciclo de vida do simulador |
 
 ### 3.1. Aplicação assinatura
 
