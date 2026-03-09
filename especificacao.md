@@ -203,8 +203,8 @@ Devem ser confeccionados e disponibilizados:
      - `assinatura-1.0.0-linux-amd64.AppImage` (Linux)
      - `assinatura-1.0.0-macos-amd64.dmg` (macOS)
    - Distribuídos via **GitHub Releases**
-   - Cada release deve conter checksums (SHA256) para verificação de integridade, ou seja, `assinatura-1.0.0-windows-amd64.exe.sha256` e assim por diante.
-   - Versionamento semântico (SemVer) para controle de releases
+   - Cada release deve conter assinatura dos artefatos publicados, conforme a seção abaixo.
+   - Observe que é usado SemVer para versionamento, então a versão 1.0.0 é apenas um exemplo e deve ser atualizada conforme o desenvolvimento avança.
 
 ## 8. Considerações de implementação
 
