@@ -88,7 +88,9 @@ Os requisitos funcionais são expressos na forma de histórias de usuário (user
 - [ ] O CLI deve verificar se as portas necessárias para o Simulador estão disponíveis antes de iniciar
 - [ ] O CLI deve permitir parar o Simulador
 - [ ] O CLI deve exibir o status atual do Simulador (ou que não está em execução)
-- [ ] O Simulador (simulador.jar) não faz parte do escopo de desenvolvimento deste sistema
+- [ ] O Simulador (simulador.jar) não faz parte do escopo de desenvolvimento deste sistema.
+- [ ] O Simulador (simulador.jar) deve ser obtido dinamicamente pelo CLI, baixando a versão mais recente disponível no repositório da disciplina.
+- [ ] O CLI não deve baixar o Simulador (simulador.jar) se a versão mais recente já estiver disponível localmente.
 
 
 ### US-04: Provisionar JDK Automaticamente
