@@ -54,7 +54,13 @@ Os requisitos funcionais são expressos na forma de histórias de usuário (user
 **Critérios de aceitação:**
 - [ ] O CLI deve aceitar comandos para criação e validação de assinatura
 - [ ] O CLI deve invocar o Assinador com os parâmetros fornecidos
+- [ ] O CLI deve suportar invocação direta do Assinador (modo local/CLI)
+- [ ] O CLI deve suportar invocação do Assinador via HTTP (modo servidor)
 - [ ] O CLI deve exibir o resultado da operação de forma legível
+
+**Modos de invocação do Assinador:**
+- **Invocação direta (CLI)**: o CLI invoca o Assinador diretamente via linha de comandos. Cada execução realiza o ciclo completo de inicialização da JVM e carga da aplicação (*cold start*), sendo adequado para execuções esporádicas ou scripts de automação.
+- **Invocação via HTTP (servidor)**: o Assinador é iniciado uma única vez e permanece em execução, aguardando requisições HTTP. O CLI envia requisições ao Assinador neste modo, eliminando o overhead de inicialização nas chamadas subsequentes (*warm start*), oferecendo menor latência e maior throughput para cenários com múltiplas requisições.
 
 
 ### US-02: Simular Assinatura Digital com Validação de Parâmetros
@@ -70,11 +76,6 @@ Os requisitos funcionais são expressos na forma de histórias de usuário (user
 - [ ] O Assinador deve suportar interação com dispositivo criptográfico (token/smart card) via interface PKCS#11
 - [ ] O Assinador deve retornar mensagens de erro claras quando parâmetros forem inválidos
 
-
-
-**Modos de execução do Assinador:**
-- **Modo local (CLI)**: a aplicação é invocada diretamente via linha de comandos. Cada execução realiza o ciclo completo de inicialização da JVM e carga da aplicação (*cold start*), sendo adequado para execuções esporádicas ou scripts de automação.
-- **Modo servidor (HTTP)**: a aplicação é iniciada uma única vez e permanece em execução, aguardando requisições. Este modo elimina o overhead de inicialização nas chamadas subsequentes (*warm start*), oferecendo menor latência e maior throughput para cenários com múltiplas requisições.
 
 ### US-03: Gerenciar Ciclo de Vida do Simulador do HubSaúde
 
@@ -119,6 +120,13 @@ Os requisitos funcionais são expressos na forma de histórias de usuário (user
 
 ## 6. Integração entre Aplicações
 
+A aplicação **assinatura** (CLI) se comunica com o **assinador.jar** por dois mecanismos:
+
+- **Invocação direta**: `assinatura` executa `assinador.jar` via linha de comandos (ex.: `java -jar assinador.jar ...`)
+- **Invocação via HTTP**: `assinatura` envia requisições HTTP para o `assinador.jar` em execução como servidor
+
+O fluxo lógico é o mesmo em ambos os modos, diferindo apenas no mecanismo de comunicação.
+
 ### 6.1. Fluxo de Criação de Assinatura
 
 ```
@@ -126,7 +134,7 @@ Usuário → assinatura → assinador.jar → assinatura → Usuário
 
 1. Usuário: Executa comando para criar assinatura
 2. assinatura: valida entrada do usuário
-3. assinatura: invoca assinador.jar com parâmetros
+3. assinatura: invoca assinador.jar (diretamente ou via HTTP)
 4. assinador.jar: valida parâmetros
 5. assinador.jar: retorna assinatura simulada
 6. assinatura: formata resultado
@@ -140,7 +148,7 @@ Usuário → assinatura → assinador.jar → assinatura → Usuário
 
 1. Usuário: Executa comando para validar assinatura
 2. assinatura: valida entrada do usuário
-3. assinatura: invoca assinador.jar com parâmetros
+3. assinatura: invoca assinador.jar (diretamente ou via HTTP)
 4. assinador.jar: valida parâmetros
 5. assinador.jar: retorna resultado simulado
 6. assinatura: formata resultado
