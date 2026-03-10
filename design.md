@@ -1,6 +1,8 @@
 # Sistema Runner - Design
 
-Usa-se o modelo C4. Consulte [C4 Model](https://c4model.com/) para detalhes.
+- O registro do design é organizado conforme o modelo C4. Consulte [C4 Model](https://c4model.com/) para detalhes.
+- Diagramas empregam o PlantUml. Consulte [PlantUml](https://plantuml-documentation.readthedocs.io/en/latest/) para detalhes.
+- Scripts (geraimagens.sh e geraimagens.bat) automatizam a geração de diagramas a partir dos arquivos .puml.
 
 
 ## 1. Diagrama de Contexto
