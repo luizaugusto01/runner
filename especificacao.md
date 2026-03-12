@@ -90,7 +90,7 @@ Os requisitos funcionais são expressos na forma de histórias de usuário (user
 - [ ] O CLI deve permitir parar o Simulador
 - [ ] O CLI deve exibir o status atual do Simulador (ou que não está em execução)
 - [ ] O Simulador (simulador.jar) não faz parte do escopo de desenvolvimento deste sistema.
-- [ ] O Simulador (simulador.jar) deve ser obtido dinamicamente pelo CLI, baixando a versão mais recente disponível no repositório da disciplina.
+- [ ] O Simulador (simulador.jar) deve ser obtido dinamicamente pelo CLI, baixando a versão mais recente disponível no repositório da disciplina (GitHub Releases).
 - [ ] O CLI não deve baixar o Simulador (simulador.jar) se a versão mais recente já estiver disponível localmente.
 
 
