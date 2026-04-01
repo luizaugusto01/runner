@@ -33,7 +33,8 @@
 **para que** o desenvolvimento possa progredir de forma organizada e incremental.
 
 **Critérios de aceitação:**
-- [ ] Projeto Go inicializado com `go mod init`
+- [ ] Projeto Go inicializado com `go mod init github.com/kyriosdata/assinatura`
+- [ ] Instalar ferramenta para cli em Go `go install github.com/spf13/cobra-cli@latest`
 - [ ] Estrutura de pacotes definida e documentada
 - [ ] Aplicação compila e executa nas três plataformas (Windows, Linux, macOS)
 - [ ] Comando `assinatura version` exibe a versão atual do CLI
