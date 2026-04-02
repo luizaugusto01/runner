@@ -1,6 +1,7 @@
 package com.kyriosdata.assinador;
 
-import com.kyriosdata.assinador.domain.SignatureRequest;
+import com.kyriosdata.assinador.domain.SignRequest;
+import com.kyriosdata.assinador.domain.ValidateRequest;
 import com.kyriosdata.assinador.domain.SignatureResponse;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class FakeSignatureServiceTest {
 
     @Test
     void shouldReturnSimulatedSignatureForValidSignRequest() {
-        SignatureRequest request = new SignatureRequest();
+        SignRequest request = new SignRequest();
         request.setContent("sample content");
         
         SignatureResponse response = service.sign(request);
@@ -25,7 +26,7 @@ class FakeSignatureServiceTest {
 
     @Test
     void shouldReturnErrorForInvalidSignRequest() {
-        SignatureRequest request = new SignatureRequest();
+        SignRequest request = new SignRequest();
         request.setContent(null); // Invalid
         
         SignatureResponse response = service.sign(request);
@@ -38,7 +39,7 @@ class FakeSignatureServiceTest {
 
     @Test
     void shouldValidateSimulatedSignatureCorrectly() {
-        SignatureRequest request = new SignatureRequest();
+        ValidateRequest request = new ValidateRequest();
         request.setContent("sample content");
         request.setSignature("MOCKED_SIGNATURE_BASE64_==");
         
@@ -51,7 +52,7 @@ class FakeSignatureServiceTest {
 
     @Test
     void shouldReturnErrorForInvalidSimulatedSignature() {
-        SignatureRequest request = new SignatureRequest();
+        ValidateRequest request = new ValidateRequest();
         request.setContent("sample content");
         request.setSignature("BAD_SIGNATURE_==");
         

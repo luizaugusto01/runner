@@ -1,6 +1,7 @@
 package com.kyriosdata.assinador;
 
-import com.kyriosdata.assinador.domain.SignatureRequest;
+import com.kyriosdata.assinador.domain.SignRequest;
+import com.kyriosdata.assinador.domain.ValidateRequest;
 import com.kyriosdata.assinador.domain.SignatureResponse;
 
 public class FakeSignatureService implements SignatureService {
@@ -8,7 +9,7 @@ public class FakeSignatureService implements SignatureService {
     private static final String FAKE_SIGNATURE = "MOCKED_SIGNATURE_BASE64_==";
 
     @Override
-    public SignatureResponse sign(SignatureRequest request) {
+    public SignatureResponse sign(SignRequest request) {
         if (request == null || request.getContent() == null || request.getContent().isEmpty()) {
             return new SignatureResponse(null, false, "Parâmetro 'content' inválido ou ausente");
         }
@@ -16,7 +17,7 @@ public class FakeSignatureService implements SignatureService {
     }
 
     @Override
-    public SignatureResponse validate(SignatureRequest request) {
+    public SignatureResponse validate(ValidateRequest request) {
         if (request == null || request.getContent() == null || request.getContent().isEmpty()) {
             return new SignatureResponse(null, false, "Parâmetro 'content' inválido ou ausente");
         }
